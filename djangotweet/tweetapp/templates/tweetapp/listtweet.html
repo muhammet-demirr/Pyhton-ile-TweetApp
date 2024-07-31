@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+
+<div class="container" style="width: 50%;">
+    {%for tweet in tweets%}
+        <div class="card" style="padding: 10px; background-color: black;">
+            <div class="card-header" style="background-color: #1A8DDA;">
+                <h4>{{tweet.username}}</h4> <!--nickname yazıyodu eskiden-->
+            </div>
+            <div class="card-body">
+                <p class="card-text" style="color: white;">{{tweet.message}}</p>
+            </div>
+            {%if tweet.username == user%}  <!--burda dediğimiz kullanıcı güncel kullanıcıya eşitse çalışır yani kendi tweetini silebilir ancak-->
+            <a href="{% url 'tweetapp:deletetweet' id=tweet.id %}" class="btn btn-danger" style="width: 150px;">Delete Tweet</a>
+            {%endif%}
+        </div>    
+    {%endfor%}
+</div>
+
+{%endblock%}
+
+
+
+<!-- block ların içinde
+<h1>ListTweet Page</h1>
+<ul>
+    {%for tweet in tweets%}
+        <li><h2></h2>{{tweet.nickname}} = {{tweet.message}}</h2></li>
+        {%endfor%}
+    </ul>
+normal hali buydu düzenleme frontend eklemek için-->  

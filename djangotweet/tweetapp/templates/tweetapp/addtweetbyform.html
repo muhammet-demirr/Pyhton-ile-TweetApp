@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{%block content%}
+<h1>AddTweetByForm Page</h1>
+<div class="container tweetform">
+  <form action="" method="POST">  
+      {% csrf_token %}  
+
+        {%for field in form%}
+      <div class ="mb-3">
+        {{field.label_tag}}
+        {{field}}
+      </div>
+        {%endfor%}
+      
+    <button type="submit" class="btn btn-primary">Send Tweet</button>
+    </form>
+</div>
+{%endblock%}
+
+<!--<div class="mb-3">  biz ekledik normal formda butonun altta olması için yapılmış class tı
+  {{form.as_p}}  <paragraf olarak göster ekledik as_p  normalde böyle yaptık ama düzenleme özelleştirme için yukarıda ekledik
+</div>-->

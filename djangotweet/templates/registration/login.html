@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+{% if form.errors %}  <!--kullanıcı adı eşleşmesse-->
+<p>Your username and password didn't match.Please try again.</p>
+{%endif%}
+
+    <!--burda yaptığımız login sayfasında eğer giriş yaptıysa ismini göster yapmadıysa giriş yapma ekranını göster-->
+    {%if user.is_authenticated%} 
+        <h2 style="padding: 10px;">Welcome {{user.username}}</h2>
+    {%else%}
+    <div class="container" style="border: 4px solid #1A8DDA;padding: 8px;width: 50%;">
+        <form method="POST" action="{% url 'login' %}">  <!--giriş yapılınca gerçekleşecek eylem-->
+            {%csrf_token%}
+            {%for field in form%} <!--bu içindeki her değişkeni ayrı ele almayı sağladı-->
+            <div class ="mb-3" style="color: white;">
+              {{field.label_tag}}
+              {{field}}
+            </div>
+              {%endfor%}
+            <button type="submit" class="btn btn-primary" style="background-color: #1A8DDA;">Login</button>
+        </form>
+    </div>
+    {%endif%}
+
+
+{%endblock%}
